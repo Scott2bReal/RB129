@@ -1,15 +1,3 @@
----
-title: "RB129 Written Assessment Practice Questions"
-date: 2021-12-27T17:26:03-06:00
-draft: false
-toc: false
-images:
-tags:
-  - study
-  - launch_school
----
-
-
 # Written Exam Practice Questions
 ---
 
