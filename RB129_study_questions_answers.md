@@ -1,67 +1,66 @@
-# Written Exam Practice Questions
----
+## Written Exam Practice Questions
 
-## What is OOP? List all the benefits of OOP?
+1. What is OOP? List all the benefits of OOP?
 
-## What is encapsulation? How is this achieved in Ruby?
+2. What is encapsulation? How is this achieved in Ruby?
 
-## What is polymorphism? What are the different ways to apply polymorphism in Ruby?
+3. What is polymorphism? What are the different ways to apply polymorphism in Ruby?
 
-## What is duck typing?
+4. What is duck typing?
 
-## What is class inheritance? How does this work in Ruby?
+5. What is class inheritance? How does this work in Ruby?
 
-## What is an object? What is a Class? What is a Module?
+6. What is an object? What is a Class? What is a Module?
 
-## What are the differences between classes and modules? How do you decide which to use?
+7. What are the differences between classes and modules? How do you decide which to use?
 
-## What is instantiation? Provide an example.
+8. What is instantiation? Provide an example.
 
-## What is the method lookup path? How is it important?
+9. What is the method lookup path? How is it important?
 
-## How do we create an object in Ruby? Give an example of the creation of an object.
+10. How do we create an object in Ruby? Give an example of the creation of an object.
 
-## What is a module? What is its purpose? How do we use them with our classes?
+11. What is a module? What is its purpose? How do we use them with our classes?
 
-## Create a module for the class you created above and include it properly.
+12. Create a module for the class you created above and include it properly.
 
-## What is a constructor? Provide an example.
+13. What is a constructor? Provide an example.
 
-## What is an instance variable? Provide an example.
+14. What is an instance variable? Provide an example.
 
-## What is an instance method? Provide an example.
+15. What is an instance method? Provide an example.
 
-## What are getter and setter methods? Provide an example.
+16. What are getter and setter methods? Provide an example.
 
-## What are accessor methods? Provide an example.
+17. What are accessor methods? Provide an example.
 
-## What are class methods? Provide an example.
+18. What are class methods? Provide an example.
 
-## What are class variables? Provide an example.
+19. What are class variables? Provide an example.
 
-## What are constant variables? Provide an example.
+20. What are constant variables? Provide an example.
 
-## What's the difference between instance and class variables?
+21. What's the difference between instance and class variables?
 
-## What's the difference between instance and class methods?
+22. What's the difference between instance and class methods?
 
-## Why do custom classes usually define a to_s method?
+23. Why do custom classes usually define a to_s method?
 
-## What is class inheritance? Provide an example.
+24. What is class inheritance? Provide an example.
 
-## What is method overriding? Provide an example.
+25. What is method overriding? Provide an example.
 
-## When are Modules used? What is interface inheritance? What is multiple inheritance?
+26. When are Modules used? What is interface inheritance? What is multiple inheritance?
 
-## What is namespacing? When is using namespacing beneficial?
+27. What is namespacing? When is using namespacing beneficial?
 
-## What is method access control?
+28. What is method access control?
 
-## How are encapsulation and method access control related?
+29. How are encapsulation and method access control related?
 
-## What are the differences between public, private, and protected methods?
+30. What are the differences between public, private, and protected methods?
 
-## What are collaborator objects? Why are they important in OOP?
+31. What are collaborator objects? Why are they important in OOP?
 
 ---
 
@@ -77,15 +76,15 @@
 class GoodDog
 end
 
-sparky = GoodDog.new
+sparky = GoodDog.new  
 ```
 
-In this code class `GoodDog` is defined, and on line 4 a new `GoodDog` is
-instantiated by calling `new` on the `GoodDog` class. Local variable sparky is
-assigned to the resulting object. This is an example of instantiating an
-object from a class
+On lines 1-2 a new class `GoodDog` is defined. On line 4 local variable `sparky`
+is assigned to the return value of calling `new` on the `GoodDog` class, which
+is a new `GoodDog` object.
 
-
+This is an example of creating an instance of a class.
+  
 ---
 
 2.
@@ -110,18 +109,15 @@ bob = HumanBeing.new
 bob.speak("Hello!")   # => ?
 ```
 
-In this code one module `Speak` and two classes, `GoodDog` and `HumanBeing` are
-defined. The speak module has one instance method `speak`, which is defined with
-one parameter `sound`. The method will output the object passed to it as a
-variable using the `puts` method and will return `nil`.
+In this code, a module `Speak` is defined along with two classes, `GoodDog` and
+`HumanBeing`. The `Speak` module contains one instance method `speak`. The
+`Speak` module is mixed into `GoodDog` and `HumanBeing` using the `include`
+keyword, giving both of those classes access to `Speak#speak`. This is shown on
+lines 16 and 18 when `speak` is called on `sparky` and `bob`, `GoodDog` and
+`HumanBeing` objects respectively. The program will output the `String` objects
+passed to `speak` as arguments.
 
-The `Speak` module is mixed into `GoodDog` and `HumanBeing` using the `include`
-keyword. This means that both `GoodDog` and `HumanBeing` objects have access to
-the `Speak#speak` method, as demonstrated on lines 16 and 18. The `String`
-objects passed to `speak` as arguments on both of those lines will be output and
-`nil` will be returned.
-
-This is an example of interface inheritance using mix-in modules.
+This is an example of interface inheritance using mix in modules.
 
 ---
 
@@ -145,24 +141,20 @@ puts GoodDog.ancestors   # => ?
 puts HumanBeing.ancestors   # => ?
 ```
 
-In this example the same module and class names are used as in the previous
-example, but the `Speak#speak` method is slightly different. Instead of being
-passed `sound` as is, `puts` is now being passed a `String` object with the
-object to which `sound` is assigned interpolated and passed in as an argument.
-This will implicitly call the `to_s` method on `sound`.
+In this code one module and two classes are defined using the same names as in
+the last example. `Speak#speak` is slightly different here however; rather than
+being passed whatever `speak` receives as an argument, `puts` is passed a `String`
+object with the argument interpolated into it.
 
-On lines 15 and 16, `ancestors` is being called on `GoodDog` and `HumanBeing`.
-`ancestors` will return the method lookup path for each of those classes. This
-method lookup path will be output as it is passed to `puts` on lines 15 and 16.
-For example, the method lookup path for `GoodDog` would be:
+On lines 15 and 16 `ancestors` is called on the `GoodDog` and `HumanBeing`
+classes. This will return the method lookup path for each of those classes. That
+return value is then passed to `puts` as an argument. Therefore, the method
+lookup paths for both of those classes is output to the console:
 
-`[GoodDog, Speak, Object, Kernel, BasicObject]`
-
-and for `HumanBeing`:
-
-`[HumanBeing, Speak, Object, Kernel, BasicObject]`
-
-This is an example of how to view the method lookup path for a class.
+```
+[GoodDog, Speak, Object, Kernel, BasicObject]
+[HumanBeing, Speak, Object, Kernel, BasicObject]
+```
 
 ---
 
@@ -177,15 +169,12 @@ end
 sparky = GoodDog.new   # => ?
 ```
 
-On line 7 of this code, a new `GoodDog` object is instantiated and sparky is
-assigned to the resulting object. Upon instantiation, `GoodDog#initialize` is
-automatically invoked. This means that the `puts` method call on line 3 of this
-code is executed, outputting `This object was initialized!` to the console and
-returning `nil`.
+When `new` is called on the `GoodDog` class, `GoodDog#initialize` will be
+invoked automatically. This will output `This object was initialized!` and
+return `nil`. `sparky` will still be assigned to a new `GoodDog` object.
 
-This is an example of a constructor method in action. Even though the return
-value of the constructor method is `nil`, a new `GoodDog` object is still
-instantiated.
+This is an example of a constructor method being invoked upon the instantiation
+of an object from a class.
 
 ---
 
@@ -200,14 +189,13 @@ end
 sparky = GoodDog.new("Sparky")
 ```
 
-This code is very similar to the last example, except that `GoodDog#initialize`
-is defined differently. In this example it takes one parameter `name`. It takes
-the object passed to it as an argument and assigns it to the `@name` isntance
-variable. In this case, on line 7 `"Sparky"` is passed as an argument, so that
-is what is assigned to `@name` when the new `GoodDog` object is created.
+This code is similar to the last one, but in this case `GoodDog#initialize`
+is defined with one parameter `name`. It assigns the instance variable `@name`
+to the object which is passed in as an argument, in this case a `String` object
+`Sparky`.
 
-This is an example of a constructor method assinging value to an instance
-variable upon instantiation of an object.
+This is an example of a constructor method defining the state of an instance of
+a class upon instantiation.
 
 ---
 
@@ -229,13 +217,11 @@ fido = GoodDog.new("Fido")
 puts fido.speak   # => ?
 ```
 
-This code uses the same `GoodDog` class as the previous example, and adds to the
-class definition one instance method `speak`. `GoodDog#speak` returns the
-`String` object `Arf!`. On lines 11 and 13, new `GoodDog` objects are
-instantiated and with `@names` `"Sparky"` and `"Fido"`.
-
-This code will output `"Arf!"` twice and return `nil` due to the `puts` calls on
-lines 12 and 14.
+This code instantiates objects of the `GoodDog` class the same was as in the
+last example. Here, the return value of `GoodDog#speak` being called on each
+`GoodDog` object is passed to `puts`. This will output the return value of that
+`speak` method call and return `nil`. In this case, both `puts` calls will
+output `Arf!`, as that is what `GoodDog#speak` returns.
 
 ---
 
@@ -255,6 +241,15 @@ sparky = GoodDog.new("Sparky")
 puts sparky.speak   # => ?
 fido = GoodDog.new("Fido")
 puts fido.speak   # => ?
+```
+
+This method is similar to the last, except this time `GoodDog#speak` will
+interpolate the value to which `@name` is assigned into its return value, which
+is passed to `puts`. Therefore, the code will output:
+
+```
+Sparky says arf!
+Fido says arf!
 ```
 
 ---
@@ -280,6 +275,25 @@ sparky.name = "Spartacus"
 puts sparky.name   # => ?
 ```
 
+In this example an object of the `GoodDog` class is instantiated with its
+`@name` assigned to `"Sparky"`. On line 2, the `attr_accessor` shorthand is used
+to create getter and setter methods for the instance variables `@name`,
+`@height`, and `@weight`. Since these are public, both `GoodDog#name` and
+`GoodDog#name=` are available outside of the `GoodDog` class. This means that on
+line 14 `GoodDog#name` can be called on `sparky` and will return the value to
+which `@name` is assigned for that instance of the `GoodDog` class.
+`GoodDog#name=` is also available, which means that on line 15 `@name` will be
+reassigned to `"Spartacus"`. This code will output the following:
+
+```
+Sparky says arf!
+Sparky
+Spartacus
+```
+
+This is an example of interacting with the public interface of an object, and
+using `attr_*` to create getter and setter methods
+
 ---
 
 9.
@@ -294,6 +308,12 @@ def speak
 end
 ```
 
+The difference between these two examples is that in the first, the `@name`
+instance variable is being directly referenced in `speak`, while in the second
+example the `name` method is being called. If the `name` method has been defined
+in the class to return the value to which `@name` is assigned, the two will have
+the same return value.
+
 ---
 
 10.
@@ -304,6 +324,12 @@ def change_info(n, h, w)
   self.weight = w
 end
 ```
+
+This is an example of an instance method definition. It calls the setter methods
+for each attribute `@name`, `@height`, and `@weight` and passes them the
+corresponding argument which `change_info` received. If those setter methods
+have been defined, this will reassign those attributes to the values passed into
+`change_info` as arguments.
 
 ---
 
@@ -317,6 +343,11 @@ end
 
 GoodDog.what_am_i   # => ?
 ```
+
+This code will return a `String` object `"I'm a GoodDog class!"` and will not
+output anything, as there is no method call present which will output anything.
+
+This is an example of defining a class method in Ruby.
 
 ---
 
@@ -342,6 +373,25 @@ dog2 = GoodDog.new
 puts GoodDog.total_number_of_dogs   # => ?
 ```
 
+In this example a `GoodDog` class is defined with a constructor `initialize`
+method which will increment the class variable `@@number_of_dogs` (which is
+initially assigned to `0`) by `1` every time an object of the class is
+instantiated. A class method `total_number_of_dogs` is also defined (by
+prepending `self` to the method name) which returns the value to which
+`@@number_of_dogs` is assigned.
+
+In the code following the class definition, `total_number_of_dogs` is called on
+`GoodDog`, and that return value is passed to `puts`. Then, two objects of the
+`GoodDog` class are instantiated. This will automatically increment
+`@@number_of_dogs` by `1` each time. Then, `total_number_of_dogs` is called on
+`GoodDog` once again, and that return value is passed to `puts`. The code will
+output:
+
+```
+0
+2
+```
+
 ---
 
 13.
@@ -360,6 +410,11 @@ end
 sparky = GoodDog.new("Sparky", 4)
 puts sparky.age             # => ?
 ```
+
+In this code, a `GoodDog` class is defined. It is defined with a constant
+`DOG_YEARS`, which is assigned to the value `7`. The `attr_accessor` shorthand
+is used to create getter and setter methods for the instance variables `@name`
+and `@age`.
 
 ---
 
@@ -647,36 +702,7 @@ class Chef
   end
 end
 
-class DecoratorWhat is OOP? List all the benefits of OOP?
-What is encapsulation? How is this achieved in Ruby?
-What is polymorphism? What are the different ways to apply polymorphism in Ruby?
-What is duck typing?
-What is class inheritance? How does this work in Ruby?
-What is an object? What is a Class? What is a Module?
-What are the differences between classes and modules? How do you decide which to use?
-What is instantiation? Provide an example.
-What is the method lookup path? How is it important?
-How do we create an object in Ruby? Give an example of the creation of an object.
-What is a module? What is its purpose? How do we use them with our classes? Create a module for the class you created above and include it properly.
-What is a constructor? Provide an example.
-What is an instance variable? Provide an example.
-What is an instance method? Provide an example.
-What are getter and setter methods? Provide an example.
-What are accessor methods? Provide an example.
-What are class methods? Provide an example.
-What are class variables? Provide an example.
-What are constant variables? Provide an example.
-What's the difference between instance and class variables?
-What's the difference between instance and class methods?
-Why do custom classes usually define a to_s method?
-What is class inheritance? Provide an example.
-What is method overriding? Provide an example.
-When are Modules used? What is interface inheritance? What is multiple inheritance?
-What is namespacing? When is using namespacing beneficial?
-What is method access control?
-How are encapsulation and method access control related?
-What are the differences between public, private, and protected methods?
-What are collaborator objects? Why are they important in OOP?
+class Decorator
   def prepare_wedding(wedding)
     decorate_place(wedding.flowers)
   end
