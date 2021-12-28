@@ -414,7 +414,17 @@ puts sparky.age             # => ?
 In this code, a `GoodDog` class is defined. It is defined with a constant
 `DOG_YEARS`, which is assigned to the value `7`. The `attr_accessor` shorthand
 is used to create getter and setter methods for the instance variables `@name`
-and `@age`.
+and `@age`. `GoodDog#initialize`, which is invoked automatically upon
+instantiation of a new `GoodDog` object, is defined with two parameters, `n` and
+`a`. On line 7, `GoodDog#name=` is called using an explicit `self` caller in
+order to disambiguate calling `GoodDog#name=` from declaring a local variable
+`name`. This method is passed `n` as an argument, thus assigning `@name` to that
+value. On the next line, `GoodDog#age=` is called the same way. This assigns
+`@age` to the return value of `a` times `DOG_YEARS`, which in the case of this
+code is `28`.
+
+This code will output `28`, and is an example of using `self` to disambiguate
+calling a setter method from creating a local variable of the same name.
 
 ---
 
@@ -438,6 +448,18 @@ end
 puts sparky      # => ?
 ```
 
+In this code a new `GoodDog` object would be instantiated in the same way as the
+last example. However, in this example since `sparky` is not assigned any value
+until it is passed to `puts` as an argument this code will raise a `NameError`.
+If `sparky` were to be a assigned to a `GoodDog` by calling
+`GoodDog.new("Sparky", 4)`, then passing `puts` `sparky` as an argument would
+output `This dog's name is Sparky and it is 28 in dog years.` due to the
+implementation of `GoodDog#to_s`. This overrides any `to_s` method definition
+further up the method lookup path, and will return the `String` object in the
+`GoodDog#to_s` definition.
+
+This is an example of method overriding.
+
 ---
 
 15.
@@ -457,6 +479,10 @@ class GoodDog
   puts self
 end
 ```
+
+The first self is referring to whatever current instance of the `GoodDog` class
+that `what_is_self` is called on. The second and third are both referring the
+the `GoodDog` class itself.
 
 ---
 
@@ -479,6 +505,14 @@ paws = Cat.new
 puts sparky.speak           # => ?
 puts paws.speak             # => ?
 ```
+
+In this code a class `Animal` is defined with one instance method `speak`.
+`Animal#speak` returns a `String` object `"Hello!"`. Two more classes are
+defined, `GoodDog` and `Cat`, both of which are subclasses of `Animal`. Neither
+of them contain a `speak` instance method. However, on lines 15 and 16 when
+`speak` is called on a `GoodDog` and `Cat` object and passed to `puts`, `Hello!`
+will be output. This is an example of subclasses inheriting behaviors (methods,
+or interface) from their superclass.
 
 ---
 
@@ -512,6 +546,17 @@ puts sparky.speak           # => ?
 puts paws.speak             # => ?
 ```
 
+This is similar to the last example in that the same classes and inheritance
+structure is defined. However, in this example the `GoodDog` class is defined
+with its own `initialize` method which overrides `Animal#initialize`, and its
+own `speak` method which overrides `Animal#speak`. `Cat` still inherits the same
+methods from `Animal` as in the last example, which means the output is the same
+for the last line. However, when `speak` is called on a `GoodDog` object with a
+`@name` of `Sparky` and passed to `puts`, `Sparky says arf!` will be output.
+
+This is an example of polymorphism, the ability for objects of different types
+to respond to a common inteface.
+
 ---
 
 18.
@@ -531,6 +576,18 @@ end
 sparky = GoodDog.new
 sparky.speak        # => ?
 ```
+
+In this code a class `Animal` is defined with one instance method `speak`, which
+returns a `String` object `Hello`. Another class `GoodDog` is defined which
+subclasses from `Animal` and has one instance method `speak`. `GoodDog#speak`
+overrides `Animal` speak when called on a `GoodDog` object. Because
+`GoodDog#speak` contains the keyword `super`, Ruby will look up the method
+lookup path for another method named `speak`. When it hits `Animal#speak`, it
+will use that return value and concatenate the rest of `GoodDog#speak`.
+
+This code will return `"Hello! from GoodDog class"` and have no output, and is
+an example of using `super` to call a method from higher up in the method lookup
+path.
 
 ---
 
@@ -553,6 +610,18 @@ end
 
 BadDog.new(2, "bear")    # => #<BadDog:0x007fb40b2beb68 @age=2, @name="bear">
 ```
+
+In this example a class `Animal` and a class `BadDog`, which subclasses from
+`Animal` are defined. When a `BadDog` object is instantiated,
+`BadDog#initialize` is passed two arguments, `2` and `'bear'`. Inside of
+`BadDog#initialize`, super is passed as an argument the value assigned to
+`name`, which in this case is `"bear"`. `Animal#initialize` will assign `@name`
+to `"bear"`, which will be inherited by the new `BadDog` object being
+instantiated. `BadDog#initialize` will then assign `@age` to the value passed in
+as an argument for the `age` parameter, in this case `2`.
+
+This is an example of using `super` to invoke a superclass's constructor method
+while instantiating an object of its subclass.
 
 ---
 
