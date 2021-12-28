@@ -1,67 +1,79 @@
+---
+title: "RB129 Written Assessment Practice Questions"
+date: 2021-12-27T17:26:03-06:00
+draft: false
+toc: false
+images:
+tags:
+  - study
+  - launch_school
+---
+
+
 # Written Exam Practice Questions
 ---
 
-## What is OOP? List all the benefits of OOP?
+1. What is OOP? List all the benefits of OOP?
 
-## What is encapsulation? How is this achieved in Ruby?
+2. What is encapsulation? How is this achieved in Ruby?
 
-## What is polymorphism? What are the different ways to apply polymorphism in Ruby?
+3. What is polymorphism? What are the different ways to apply polymorphism in Ruby?
 
-## What is duck typing?
+4. What is duck typing?
 
-## What is class inheritance? How does this work in Ruby?
+5. What is class inheritance? How does this work in Ruby?
 
-## What is an object? What is a Class? What is a Module?
+6. What is an object? What is a Class? What is a Module?
 
-## What are the differences between classes and modules? How do you decide which to use?
+7. What are the differences between classes and modules? How do you decide which to use?
 
-## What is instantiation? Provide an example.
+8. What is instantiation? Provide an example.
 
-## What is the method lookup path? How is it important?
+9. What is the method lookup path? How is it important?
 
-## How do we create an object in Ruby? Give an example of the creation of an object.
+10. How do we create an object in Ruby? Give an example of the creation of an object.
 
-## What is a module? What is its purpose? How do we use them with our classes?
+11. What is a module? What is its purpose? How do we use them with our classes?
 
-## Create a module for the class you created above and include it properly.
+12. Create a module for the class you created above and include it properly.
 
-## What is a constructor? Provide an example.
+13. What is a constructor? Provide an example.
 
-## What is an instance variable? Provide an example.
+14. What is an instance variable? Provide an example.
 
-## What is an instance method? Provide an example.
+15. What is an instance method? Provide an example.
 
-## What are getter and setter methods? Provide an example.
+16. What are getter and setter methods? Provide an example.
 
-## What are accessor methods? Provide an example.
+17. What are accessor methods? Provide an example.
 
-## What are class methods? Provide an example.
+18. What are class methods? Provide an example.
 
-## What are class variables? Provide an example.
+19. What are class variables? Provide an example.
 
-## What are constant variables? Provide an example.
+20. What are constant variables? Provide an example.
 
-## What's the difference between instance and class variables?
+21. What's the difference between instance and class variables?
 
-## What's the difference between instance and class methods?
+22. What's the difference between instance and class methods?
 
-## Why do custom classes usually define a to_s method?
+23. Why do custom classes usually define a to_s method?
 
-## What is class inheritance? Provide an example.
+24. What is class inheritance? Provide an example.
 
-## What is method overriding? Provide an example.
+25. What is method overriding? Provide an example.
 
-## When are Modules used? What is interface inheritance? What is multiple inheritance?
+26. When are Modules used? What is interface inheritance? What is multiple inheritance?
 
-## What is namespacing? When is using namespacing beneficial?
+27. What is namespacing? When is using namespacing beneficial?
 
-## What is method access control?
+28. What is method access control?
 
-## How are encapsulation and method access control related?
+29. How are encapsulation and method access control related?
 
-## What are the differences between public, private, and protected methods?
+30. What are the differences between public, private, and protected methods?
 
-## What are collaborator objects? Why are they important in OOP?
+31. What are collaborator objects? Why are they important in OOP?
 
 ---
 
@@ -77,9 +89,9 @@
 class GoodDog
 end
 
-sparky = GoodDog.new
+sparky = GoodDog.new  
 ```
-
+  
 ---
 
 2.
