@@ -394,9 +394,34 @@
 
 29. How are encapsulation and method access control related?
 
+    Encapsulation and method access control are closely related in that they
+    both involve hiding aspects of the inner workings of classes. Encapsulation
+    refers to the hiding of implementation details of a class from other parts
+    of the program, while method access control refers to hiding those
+    implementation details from users of the class. The line is a bit blurry,
+    as sometimes the "user" of a class can be a programmer making changes to
+    existing code. Both are in place in order to protect the integrity of the
+    inner workings of a class, and make its interaction with the rest of the
+    code more predictable.
+
 30. What are the differences between public, private, and protected methods?
 
+    Public methods are available from anywhere in the code. They can be called
+    on any object of a given class.
+    
+    Private methods are only available from within the class itself, and may not
+    be called with an explicit receiver. Only the current instance of the class
+    has access to private methods
+    
+    Protected methods act as private methods outside of a class, but inside the
+    class they act as public methods and can be called with explicit receivers.
+
 31. What are collaborator objects? Why are they important in OOP?
+
+    Collaborator objects are objects that have been stored as instance variables
+    of another object. The are important as they form the basis for how OOP
+    works in Ruby. Since everything is an object, those objects must be able to
+    be used to define the state of objects.
 
 ---
 
