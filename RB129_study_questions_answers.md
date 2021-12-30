@@ -2,59 +2,395 @@
 
 1. What is OOP? List all the benefits of OOP?
 
+    Object Oriented Programming (OOP) is a way of organizing and abstracting
+    concepts in order to facilitate more complex, flexible, and easily
+    maintainable code. It is achieved through the use of concepts such as
+    encapsulation, polymorphism, and inheritance.
+
 2. What is encapsulation? How is this achieved in Ruby?
+
+    Encapsulation is the concept of partitioning the data and functions of a
+    program into distinct parts which are made unavailable to each other. This
+    is done in order to fcilitate more complex programming, in which small
+    pieces of independent functionality or data can interact with each other. In
+    Ruby, encapsulation is achieved by creating **objects**. Objects are given
+    real-world noun names have methods whose names describe their behavior.
+    Encapsulation is involved in controlling and defining the ways in which
+    users of a program interact with it.
 
 3. What is polymorphism? What are the different ways to apply polymorphism in Ruby?
 
+   Polymorphism is the possiblility of multiple different data types to respond
+   to a common interface. Many different object types can respond to a method
+   with the same name. It is often achieved via inheritance, but is not
+   necessary.
+
 4. What is duck typing?
+
+    Duck typing is when different object types share the same method name
+    between them and the methods take the same number of arguments.
 
 5. What is class inheritance? How does this work in Ruby?
 
+    Class inheritance in Ruby is the ability for a class subclass from another
+    class. The class which is being subclassed from is called the superclass.
+    The subclass will take on attributes and behaviors from the superclass.
+    Methods in the subclass with the same name as those in the superclass will
+    override the superclass methods. Classes can only subclass from one
+    superclass (single inheritance)
+
 6. What is an object? What is a Class? What is a Module?
+
+    An object is an instance of a class. A class is like a blueprint for
+    creating objects, that outlines the attributes and behaviors of objects
+    created. A module is a way to group behaviors and classes into a single
+    namespace. Objects cannot be instantiated directly from a module, but
+    modules can contain classes, from which objects may be instantiated. Modules
+    can be mixed into classes using the `include` keyword. When modules are
+    mixed into classes, instances (objects) of that class will have access to
+    the behaviors from the module (interface inheritance)
 
 7. What are the differences between classes and modules? How do you decide which to use?
 
+    Objects can be instantiated from classes, while they cannot be instantiated
+    from modules. A class may only inherit from one single superclass, but an
+    unlimited number of modules can be mixed into a class. Deciding which to use
+    can be tricky, but a handy way to make that decision is by evaluating the
+    relationship between things, and looking for a "has-a" or an "is-a"
+    relationship. For example, if something "is an" animal, then a class
+    `Animal` would be appropriate. If something "has an" ability to swim, then
+    it would make sense to go with a module `Swimmable`.
+
 8. What is instantiation? Provide an example.
+
+    Instantiation is the creation of an object using the blueprint provided by a
+    class definition. Each instance of a class is assigned a unique object ID.
+    Calling `new` on a class will instantiate an object of that class. Here is
+    an example of instantiating an object from a basic class:
+    
+    ```ruby
+    class Foo
+      def initialize
+        @name = 'Bar'
+      end
+    end
+    
+    thing = Foo.new # An object is instantiated.
+    p thing         # => #<Foo:0x00007f25b807ff00 @name="Bar">   
+    ```
 
 9. What is the method lookup path? How is it important?
 
+    The method lookup path is the order in which Ruby will check classes and
+    modules to find a method which has been called. It starts in the class from
+    which the calling object is instantiated, and will continue up the the
+    inheritance tree, starting with the most recently included modules and
+    moving up from there. The method lookup path can be examined by calling
+    `ancestors` on a class. It is important because it shows us where Ruby is
+    looking for a method, and if it is not understood it can lead to accidental
+    method overriding.
+
 10. How do we create an object in Ruby? Give an example of the creation of an object.
+
+    This is the same as question number 8
 
 11. What is a module? What is its purpose? How do we use them with our classes?
 
+    A module is a way to group behaviors and even classes under one namespace.
+    A module's purpose is to organize related classes and behaviors. They can
+    also be used as "containers", to store methods otherwhise out-of-place in an
+    application. The are "mixed-in" to classes using the `include` keyword.
+
 12. Create a module for the class you created above and include it properly.
+
+    ```ruby
+    module Doable
+      def what_are_we_doing
+        "It!"
+      end
+    end
+    
+    class Foo
+      include Doable
+      
+      def initialize
+        @name = 'Bar'
+      end
+    end
+    
+    thing = Foo.new
+    puts thing.what_are_we_doing # => "It!"
+    ```
+
 
 13. What is a constructor? Provide an example.
 
+    A constructor is a method which instantiates an object of a class. In Ruby,
+    the `new` method acts as a constructor, which will create a new object of a
+    class and call that class's `initialize` method automatically if one exists.
+    For example:
+    
+    ```ruby
+    class Thing
+      def initialize(name) # Invoked upon instantiation of an object.
+        @name = name 
+      end
+    end
+    
+    thing = Thing.new("thing") # The constructor is called
+    p thing # => #<Thing:0x00007f086e291418 @name="thing">   
+    ```
+
 14. What is an instance variable? Provide an example.
 
+    An instance variable is a way to define and keep track of the state of an
+    object. They are scoped at the object level and are declared using a leading
+    `@` symbol. An example of an instance variable would be:
+    
+    ```ruby
+    class Thing
+      def initialize(name)
+        @name = name # On this line, the instance variable @name is assigned to name
+      end
+    end
+    
+    thing = Thing.new("thing")
+    p thing # => #<Thing:0x00007f086e291418 @name="thing">   
+    ```
+    
 15. What is an instance method? Provide an example.
-
+    
+    An instance method is a method available to objects of the class in which
+    the method is defined. An example of an instance method would be:
+    ```ruby
+    class Thing
+      def do_a_thing # This is the instance method
+        "I'm doing a thing!"
+      end
+    end
+    
+    thing = Thing.new
+    puts thing.do_a_thing # => "I'm doing a thing!"
+    ```
 16. What are getter and setter methods? Provide an example.
+    
+    A getter method is an instance method which returns the value to which the
+    instance variable of the corresponding name is assigned. It may have
+    additional functionality beyond that. For example:
+    
+    ```ruby
+    class Thing
+      def initialize
+        @name = "thing"
+      end
+      
+      def name # getter method
+        @name  # returns @name
+      end
+    end
+    ```
+    
+    A setter method is a method which will reassign an instance variable to a
+    new value. A setter method will always return the value which it is passed
+    as an argument, even if something else is explicitly returned.
+    
+    ```ruby
+    class Thing
+      def initialize
+        @name = "thing"
+      end
+      
+      def name=(value) # setter method
+        @name = value  # @name is reassigned to value
+      end
+    ```
 
 17. What are accessor methods? Provide an example.
+    
+    An accessor method is a shorthand for creating a getter and a setter method
+    for a given instance variable in one line. An example would be:
+    
+    ```ruby
+    class Foo
+      def initialize
+        @name = "Bar"
+      end
+      
+      attr_accessor :name # accessor method
+    end
+    
+    thing = Foo.new 
+    puts thing.name # => 'Bar'
+    thing.name = "Baz"
+    puts thing.name # => 'Baz'
+    ```
 
 18. What are class methods? Provide an example.
+    
+    A class method is a method which can be called directly on a class. Class
+    methods do not have access to instance variables and are defined with a
+    leading `self`. For example:
+    
+    ```ruby
+    class Foo
+      def self.do_a_thing
+        puts "I'm doing a thing!"
+      end
+    end
+    
+    Foo.do_a_thing # => "I'm doing a thing!"
+    ```
 
 19. What are class variables? Provide an example.
 
+    A class variable is a variable which pertains to an entire class, and not
+    just one instance. Instance methods have access to class variables, and are
+    created with two `@@` symbols. For example:
+    
+    ```ruby
+    class Foo
+      @@bar = "baz" # class variable
+      
+      def self.bar  # getter method for @@bar
+        @@bar
+      end
+    end
+    
+    puts Foo.bar    # => "baz"
+    ```
+
 20. What are constant variables? Provide an example.
 
+    A constant variable is a value which will not change during the runtime of
+    the program. They are useful as a way to refer to a specific value
+    throughout your program, and if it needs to be changed later then it can be
+    changed in just one place. Constants have lexical scope in Ruby, meaning
+    that where they are defined is important. They can be referred to using the
+    namespace resolution operator (`::`). An example of a constant:
+    
+    ```ruby
+    module WhatIsIt
+      def tell_me_about_it
+        puts Foo::SOMETHING # namespace resolution
+      end
+    end
+    
+    class Foo
+      include WhatIsIt
+      
+      BAR = 'baz'           # constant definition
+      SOMETHING = 'this is it!'
+      
+      attr_reader :name
+      
+      def initialize
+        name = BAR
+      end
+    end
+    
+    thing = Foo.new
+    thing.name             # => 'baz'
+    thing.tell_me_about_it # => 'this is it!'
+    ```
+
 21. What's the difference between instance and class variables?
+    
+    Instance variables are scoped at the object level, while class variables are
+    scoped at the class level.
 
 22. What's the difference between instance and class methods?
 
+    The difference between class and instance methods is that instance methods
+    are available to objects of a class, and have access to both instance and
+    class variables. Class methods are not available to objects of a class, but
+    are only available to be called on the class itself. They have access to
+    class variables and not instance variables.
+
 23. Why do custom classes usually define a to_s method?
+
+    A custom `to_s` method is usually defined by classes in order to make it's
+    reaction to `to_s` more human-readable and useful for the programmer. It
+    will override any `to_s` method up the method lookup path, and the
+    programmer can select relevant attribute(s) from the class, or specify a
+    formatting they would like to use.
 
 24. What is class inheritance? Provide an example.
 
+    Class inheritance is when one class can take on attributes and behaviors
+    from another class. For example:
+    
+    ```ruby
+    class Animal
+      def initialize(name)
+        @name = "Wally"
+      end
+      
+      def say_name
+        puts @name
+      end
+    end
+    
+    class Cat < Animal; end
+    
+    wally = Cat.new("Wally")
+    p wally         # => #<Cat:0x00007f25b8110d70 @name="Wally">
+    wally.say_name  # => Wally
+    ```
+    
+    In this example, the `Cat` class has no methods or attributes defined within
+    it. However, when a new `Cat` object is instantiated and `new` is passed
+    `"Wally"` as an argument, the resulting `Cat` object has a `@name` of
+    `"Wally"`, and can `say_name`.
+
 25. What is method overriding? Provide an example.
+
+    Method overriding is when there is a method of the same name in both a
+    subclass and a superclass, for example. The method in the subclass will take
+    precedence over the method from the superclass. Here is a concrete example:
+    
+    ```ruby
+      class Animal
+        def walk
+          puts "I'm walking!"
+        end
+      end
+      
+      class Frog > Animal
+        def walk
+          puts "I'm hopping!"
+        end
+      end
+      
+      frog = Frog.new
+      frog.walk # => "I'm hopping!"
+    ```
 
 26. When are Modules used? What is interface inheritance? What is multiple inheritance?
 
+    Modules are used when there is a "has a" relationship involved, or if the
+    programmer is looking to disambiguate code they have written from similarly
+    named code from an existing library (namespacing). Interface inheritance
+    occurs when a module is mixed into a class. Objects of that class "inherit",
+    or have access to, behaviors defined within the module. Multiple inheritance
+    is the ability for an object of a class to inherit interfaces from multiple
+    sources. Technically Ruby is a single inheritance language, as classes can
+    only have a single superclass. However, Ruby approximates multiple
+    inheritance through the use of mix-in modules.
+
 27. What is namespacing? When is using namespacing beneficial?
 
+    Namespacing is the practice of using modules to group similar and related
+    class and behaviors under one name. It is beneficial when code the
+    programmer has written might potentially conflict name-wise with code in
+    existing libraries. Namespaces can be referenced using the namespace
+    resolution operator (`::`).
+  
 28. What is method access control?
+
+    Method access control is is the practice of limiting the publicly available
+    interface of a class using access modifiers. Method access control is useful
+    in that it allows the programmer to define the ways in users can interact
+    with portions of the program. 
 
 29. How are encapsulation and method access control related?
 
@@ -658,6 +994,17 @@ neemo.swim                  # => ?
 paws.swim                   # => ?
 ```
 
+In this code, a module `Swimmable` is defined and mixed into the classes `Fish`
+and `Dog` using the `include` keyword. A class `Animal` is defined, along with
+two classes which subclass from `Animal`, `Fish` and `Mammal`. An additional two
+classes are defined, `Cat` and `Dog`, which subclass from `Mammal`.
+
+After these class and module definitions, local variables `sparky`, `neemo`, and
+`paws` are assigned to new `Dog`, `Fish`, and `Cat` objects. `swim` is then
+called on these three objects. For the first two, the code will return 
+`"I'm swimming!"` (with no output), and the last will give a `NoMethodError`, as
+the `Cat` class does not have access to `Swimmable#swim`.
+
 ---
 
 21.
@@ -691,6 +1038,20 @@ end
 puts Animal.ancestors    # => ?
 ```
 
+The final line of code here will output:
+```
+Animal
+Walkable
+Object
+Kernel
+BasicObject
+```
+
+(and return `nil`)
+
+This is the method lookup path for the `Animal` class. The second location in
+the path is `Walkable`, as it has been mixed into the `Animal` class.
+
 ---
 
 22.
@@ -707,6 +1068,27 @@ end
 
 puts GoodDog.ancestors    # => ?
 ```
+
+The last line of code will output:
+
+```
+GoodDog
+Climbable
+Swimmable
+Animal
+Walkable
+Object
+Kernel
+BasicObject
+```
+
+(and return `nil`)
+
+The method lookup path starts at the calling class, then goes through the
+included modules, starting with the last inclusion. After it has checked the
+modules, it will move on to the nearest superclass, in this case `Animal`. After
+that it will go to `Walkable`, as that module is mixed into `Animal`. It will
+then traverse through `Object`, `Kernel`, and finally `BasicObject`.
 
 ---
 
@@ -725,6 +1107,15 @@ module Mammal
     end
   end
 end
+```
+
+This is an example of namespacing. The `Mammal` module is used to organize the
+classes `Dog` and `Cat`, so they can be referred to using the namespace
+resolution operator (`::`). An usage example would be:
+
+```ruby
+Mammal::Dog.new.speak('Arf!') # => 'Arf!'
+Mammal::Cat.new.say_name('Maytag') # => 'Maytag'
 ```
 
 ---
@@ -746,6 +1137,12 @@ end
 fido = Animal.new
 fido.a_public_method        # => ?
 ```
+
+This code will output `Will this work? IDK, I'm protected!`. Because
+`a_public_method` is public, there is no issue calling it outside of the
+`Animal` class. Because `fido` is an object of the `Animal` class, it has access
+to `a_protected_method`. In fact, in this case it would even have access if the
+method was private.
 
 ---
 
