@@ -416,6 +416,9 @@
     Protected methods act as private methods outside of a class, but inside the
     class they act as public methods and can be called with explicit receivers.
 
+    Protected can't be called outside of the class, but can be called inside of
+    the class by other objects of the same class.
+
 31. What are collaborator objects? Why are they important in OOP?
 
     Collaborator objects are objects that have been stored as instance variables
