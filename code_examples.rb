@@ -198,12 +198,50 @@ class Trumpet < Instrument; end
 puts Trumpet.ancestors # => Trumpet, Instrument, Playable, Object, Kernel, BasicObject
 
 # Super
+
+# Passing super an argument
 class Instrument
+  def initialize(serial_number)
+    @serial_number = serial_number
+  end
 end
 
 class Trumpet
+  def initialize(serial_number, key)
+    super(serial_number)
+    @key = key
+  end
 end
-# Object Methods
+
+drum = Instrument.new(123)
+trumpet = Instrument.new(1234, 'C')
+p trumpet
+p drum
+
+# No Argument
+class Instrument
+  @@instruments_produced = 0
+
+  def initialize
+    @@instruments_produced += 1
+  end
+
+  def self.instruments_produced
+    @@instruments_produced
+  end
+end
+
+class Trumpet < Instrument
+  def initialize(key)
+    super()
+    @key = key
+  end
+end
+
+p Instrument.instruments_produced # => 0
+trumpet = Trumpet.new('C')
+p Instrument.instruments_produced # => 1
+
 # Variable Scope with Inheritance
 # Polymorphism & Encapsulation
 # Polymorphism
