@@ -1,21 +1,35 @@
-# Classes and Objects
+# *--------------------------------+
+# |  *~  RB129 Code Snippets  ~*   |
+# +--------------------------------+
 
+# ----------------------------------
+# Classes and Objects
+# ----------------------------------
+
+# ----------------------------------
 # Objects
+# ----------------------------------
 string1 = 'a'
 string2 = 'a'
 p string1.object_id
 p string2.object_id
 
+# ----------------------------------
 # Classes
+# ----------------------------------
 p "string".class #
 p 1.class
 
+# ----------------------------------
 # Object Instantiation
+# ----------------------------------
 class Cat; end
 wally = Cat.new
 p wally
 
+# ----------------------------------
 # Instance Variables
+# ----------------------------------
 class Cat
   def initialize(name)
     @name = name
@@ -25,7 +39,9 @@ end
 wally = Cat.new("Wally")
 p wally
 
+# ----------------------------------
 # Instance Methods
+# ----------------------------------
 class Cat
   def walk
     puts "I'm walking!"
@@ -35,7 +51,9 @@ end
 wally = Cat.new
 wally.walk # => I'm walking!
 
+# ----------------------------------
 # Class Variables
+# ----------------------------------
 class Cat
   @@total_cats = 0
 
@@ -48,8 +66,9 @@ p Cat.class_variables
 wally = Cat.new
 p Cat.class_variables
 
+# ----------------------------------
 # Class Methods
-
+# ----------------------------------
 class Cat
   def self.meow
     puts "Meow!"
@@ -58,7 +77,9 @@ end
 
 Cat.meow # => "Meow!"
 
+# ----------------------------------
 # Instance Methods vs Class Methods
+# ----------------------------------
 
 class Cat
   def self.meow
@@ -74,7 +95,9 @@ Cat.meow
 wally = Cat.new
 wally.meow
 
+# ----------------------------------
 # Setter and Getter Methods
+# ----------------------------------
 class Cat
   def initialize(name)
     @name = name
@@ -94,7 +117,9 @@ puts wally.name
 wally.name = "Walter"
 puts wally.name
 
+# ----------------------------------
 # Using attr_*
+# ----------------------------------
 class Cat
   def initialize(name)
     @name = name
@@ -108,10 +133,15 @@ puts wally.name
 wally.name = "Walter"
 puts wally.name
 
+# ----------------------------------
 # Method Access Control
+# ----------------------------------
+
+# ----------------------------------
 # Public
 # Private
 # Protected
+# ----------------------------------
 class BankAccount
   include Comparable
 
@@ -144,9 +174,11 @@ puts account
 puts account2
 puts account2 > account
 
+# ----------------------------------
 # Inheritance
 # Class Inheritance
 # Interface Inheritance
+# ----------------------------------
 module Hittable
   def hit_with_stick
     p "Boom!"
@@ -186,7 +218,9 @@ violin.play
 frying_pan.hit_with_stick
 drum.hit_with_stick
 
+# ----------------------------------
 # Method Lookup Path
+# ----------------------------------
 module Playable; end
 
 class Instrument
@@ -197,9 +231,13 @@ class Trumpet < Instrument; end
 
 puts Trumpet.ancestors # => Trumpet, Instrument, Playable, Object, Kernel, BasicObject
 
+# ----------------------------------
 # Super
+# ----------------------------------
 
+# ----------------------------------
 # Passing super an argument
+# ----------------------------------
 class Instrument
   def initialize(serial_number)
     @serial_number = serial_number
@@ -218,7 +256,9 @@ trumpet = Instrument.new(1234, 'C')
 p trumpet
 p drum
 
+# ----------------------------------
 # No Argument
+# ----------------------------------
 class Instrument
   @@instruments_produced = 0
 
@@ -242,9 +282,11 @@ p Instrument.instruments_produced # => 0
 trumpet = Trumpet.new('C')
 p Instrument.instruments_produced # => 1
 
+# ----------------------------------
 # Variable Scope with Inheritance
 
 # Instance Variables with inheritance
+# ----------------------------------
 class Person
   def initialize(name)
     @name = name
@@ -270,7 +312,9 @@ bob.introduce # => "Hi! I'm a lawyer, and my name is Bob"
 jim = Paramedic.new('Jim')
 jim.introduce # => "Hi! I'm a paramedic, and my name is"
 
+# ----------------------------------
 # Class variables with inheritance
+# ----------------------------------
 class Instrument
   @@instruments_produced = 0
 
@@ -291,10 +335,13 @@ puts Instrument.instruments_produced # => 0
 trumpet = Trumpet.new
 puts Instrument.instruments_produced # => 3
 
+# ----------------------------------
 # Polymorphism & Encapsulation
+# ----------------------------------
 
-
+# ----------------------------------
 # Polymorphism
+# ----------------------------------
 class Car
   def move
     puts "I'm driving!"
@@ -312,7 +359,9 @@ plane = Plane.new
 car.move   # => "I'm driving!"
 plane.move # => "I'm flying!"
 
+# ----------------------------------
 # Polymorphism Through Inheritance
+# ----------------------------------
 class Instrument
   def key
   end
@@ -331,7 +380,9 @@ drum = BassDrum.new
 trumpet.key # => "Bb"
 drum.key    # => No output, because drums aren't pitched
 
+# ----------------------------------
 # Polymorphism Through Duck Typing
+# ----------------------------------
 class Restaurant
   attr_reader :guests, :ingredients
 
@@ -362,7 +413,9 @@ class Waiter
   end
 end
 
+# ----------------------------------
 # Encapsulation
+# ----------------------------------
 class BankAccount
   attr_reader :balance
 
@@ -383,9 +436,11 @@ class BankAccount
   attr_writer :balance
 end
 
+# ----------------------------------
 # Modules
 # Mixin Modules
 # Module Methods
+# ----------------------------------
 module Packable
   def pack
     puts "I'm ready to go fly on a plane!"
@@ -399,7 +454,9 @@ end
 class GrandPiano # => Can't take a piano on a plane
 end
 
+# ----------------------------------
 # Namespacing
+# ----------------------------------
 module Instrument
   class Trumpet
     def self.play
@@ -415,10 +472,13 @@ module Instrument
 end
 
 Instrument::Trumpet.play  # => "Toot toot!"
-Instrument::BassDrum.play #=> "Boom boom!"
+Instrument::BassDrum.play # => "Boom boom!"
 
+# ----------------------------------
 # Self
+# ----------------------------------
 # Inside Instance Methods
+# ----------------------------------
 class Person
   attr_reader :name
 
@@ -435,8 +495,10 @@ class Person
   end
 end
 
+# ----------------------------------
 # self Inside Class Definitions
 # self Inside Class Methods
+# ----------------------------------
 class Person
   def self.describe_self
     puts "I'm a #{self}!"
@@ -467,12 +529,22 @@ trumpet = Trumpet.new
 trumpet.pack  # => "Trumpets can fly on planes!"
 Packable.pack # => "This is the Packable module!"
 
+# ----------------------------------
 # self Outside Any Class
+# ----------------------------------
 puts self # => main
 
+# ----------------------------------
 # Fake Operators and Equality
+# ----------------------------------
+
+# ----------------------------------
 # Equivalence
+# ----------------------------------
+
+# ----------------------------------
 # ==
+# ----------------------------------
 class Car
   attr_reader :passengers
 
@@ -490,7 +562,9 @@ car2 = Car.new(3)
 
 car1 == car2 # => false
 
+# ----------------------------------
 # equal? and object_id
+# ----------------------------------
 class Car
 end
 
@@ -500,7 +574,9 @@ car1.object_id
 car2.object_id
 car1.equal?(car2) # => false
 
+# ----------------------------------
 # ===
+# ----------------------------------
 Class === String # => true
 String === Class # => false
 
@@ -511,8 +587,13 @@ puts hash1.object_id
 puts hash2.object_id
 puts hash1.eql?(hash2) # => true
 
+# ----------------------------------
 # Fake Operators
+# ----------------------------------
+
+# ----------------------------------
 # Comparison Methods
+# ----------------------------------
 class BankAccount
   def initialize(balance)
     @balance = balance
@@ -536,7 +617,9 @@ acct2 = BankAccount.new(100)
 puts acct1 > acct2 # => false
 puts acct1 < acct2 # => true
 
+# ----------------------------------
 # Right and Left Shift
+# ----------------------------------
 class Car
   attr_reader :passengers
 
@@ -553,7 +636,9 @@ car = Car.new
 car << "Bob"
 puts car.passengers # => Bob
 
+# ----------------------------------
 # Plus
+# ----------------------------------
 class CustomNumberClass
   attr_reader :value
 
@@ -571,7 +656,9 @@ two = CustomNumberClass.new(2)
 
 puts(one + two) # => 3
 
+# ----------------------------------
 # Element Setters and Getters
+# ----------------------------------
 class Car
   attr_reader :passengers
 
@@ -593,8 +680,9 @@ puts car[0] # => 'bob'
 car[0] = 'Scott'
 puts car[0] # => 'Scott'
 
-
+# ----------------------------------
 # Collaborator Objects
+# ----------------------------------
 class Band
   def initialize
     @drummer = Drummer.new("Ringo")
