@@ -56,15 +56,7 @@ wally.walk # => I'm walking!
 # ----------------------------------
 class Cat
   @@total_cats = 0
-
-  def initialize
-    @@total_cats += 1
-  end
 end
-
-p Cat.class_variables
-wally = Cat.new
-p Cat.class_variables
 
 # ----------------------------------
 # Class Methods
