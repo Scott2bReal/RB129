@@ -69,13 +69,52 @@ cat.eat # => "Yum!"
 
 6. What is an object? What is a Class? What is a Module?
 
+An object is an instance of a class. A class is like a blueprint used to define
+the behaviors and attributes available to objects created with that blueprint. A
+module is a way to group related behaviors and classes under one namespace.
+
 7. What are the differences between classes and modules? How do you decide which to use?
+
+A main difference between classes and modules is that classes can be used to
+instantiate objects, while modules cannot. Another major difference is that a
+class can only inherit from a single superclass, but may inherit behaviors from
+any number of modules. The decision of which to use is based on the
+relationships involved. If something has a "has a" relationship, then a module
+will be best. On the other hand, if something has an "is a" relationship, then a
+class is the way to go.
 
 8. What is instantiation? Provide an example.
 
+Instantiation is the act of creating an object using a class. An example of
+instantiation is as follows:
+
+```ruby
+class Dog; end
+
+dog = Dog.new
+p dog # => #<Dog:0x00007fc3bb9a5bd8> 
+```
+
 9. What is the method lookup path? How is it important?
 
+The method lookup path describes the places (classes and/or modules) Ruby will
+search for a method of a given name, and the order in which it will examine
+those places. It is important because it shows us where Ruby is looking for a
+method, and if not understood properly can lead to unintended behaviors. 
+
 10. How do we create an object in Ruby? Give an example of the creation of an object.
+
+We create an object in Ruby by calling the `new` method on a class. This will
+automatically invoke the `#initialize` instance method if one exists, so it must
+be passed the proper number of arguments. Here is an example of creation of an
+object in Ruby.
+
+```ruby
+class Dog; end
+
+dog = Dog.new
+p dog # => #<Dog:0x00007fc3bb9a5bd8> 
+```
 
 11. What is a module? What is its purpose? How do we use them with our classes?
 
