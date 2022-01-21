@@ -69,6 +69,7 @@ cat.eat # => "Yum!"
 
 6. What is an object? What is a Class? What is a Module?
 
+<<<<<<< HEAD
 An object is an instance of a class. A class is like a blueprint used to define
 the behaviors and attributes available to objects created with that blueprint. A
 module is a way to group related behaviors and classes under one namespace.
@@ -94,6 +95,25 @@ class Dog; end
 dog = Dog.new
 p dog # => #<Dog:0x00007fc3bb9a5bd8> 
 ```
+=======
+An object is an instance of a class. A class is a sort of blueprint which
+describes attributes and behaviors available to objects created using that
+blueprint. A module is a way to group behaviors and/or classes into a single
+namespace, which can be "mixed-in" to classes.
+
+7. What are the differences between classes and modules? How do you decide which to use?
+
+One main difference between a class and a module is that a class can be used to
+instantiate objects, which a module cannot. Another difference is that a class
+may only subclass from one superclass (in Ruby), while many modules can be mixed
+into a single class. A useful method to decide which to use is to examine the
+type of relationship between concepts: a "has a" relationship would suggest
+using a module, whereas an "is a" relationship would suggest class inheritance.
+
+8. What is instantiation? Provide an example.
+
+Instantiation 
+>>>>>>> 043eb3238c4422031dfa122fb71f5c89402e10ce
 
 9. What is the method lookup path? How is it important?
 
