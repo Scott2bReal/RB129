@@ -17,15 +17,15 @@ p string2.object_id
 # ----------------------------------
 # Classes
 # ----------------------------------
-p "string".class #
-p 1.class
+p "string".class # => String
+p 1.class        # => Integer
 
 # ----------------------------------
 # Object Instantiation
 # ----------------------------------
 class Cat; end
 wally = Cat.new
-p wally
+p wally # => #<Cat:0x00007ff6af511eb0>
 
 # ----------------------------------
 # Instance Variables
@@ -37,7 +37,7 @@ class Cat
 end
 
 wally = Cat.new("Wally")
-p wally
+p wally # => #<Cat:0x00007f30c87bb3f8 @name="Wally">
 
 # ----------------------------------
 # Instance Methods
